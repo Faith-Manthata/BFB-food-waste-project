@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - FoodSave Pro</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/auth.css">
+</head>
+<body class="login-body">
+    <div class="login-container">
+        <div class="login-header">
+            <h1>FoodSave Pro</h1>
+            <p>Reducing Retail Food Waste Through Improved Supply Chain Management</p>
+        </div>
+
+        <form class="login-form">
+            <h2>Welcome Back</h2>
+            
+            <div class="form-group">
+                <label for="username">Username or Email</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <div class="form-options">
+                <label class="remember-me">
+                    <input type="checkbox" name="remember">
+                    Remember me
+                </label>
+                <a href="#" class="forgot-password">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="login-btn">Login</button>
+
+            <div class="role-selection">
+                <label>Login as:</label>
+                <select id="userRole">
+                    <option value="employee">Employee</option>
+                    <option value="manager">Manager</option>
+                    <option value="admin">Administrator</option>
+                </select>
+            </div>
+
+            <div class="demo-accounts">
+                <h4>Demo Accounts:</h4>
+                <p>Employee: emp@foodsave.com / pass123</p>
+                <p>Manager: manager@foodsave.com / pass123</p>
+            </div>
+        </form>
+
+        <div class="project-info">
+            <h3>Project BFB321 - Group 15</h3>
+            <p>University of Pretoria - Supply Chain Technologies</p>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>
