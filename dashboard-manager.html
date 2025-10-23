@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager Dashboard - FoodSave Pro</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <h2>FoodSave Pro</h2>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Main Dashboard</a>
+            <a href="inventory.html">Inventory</a>
+            <a href="forecasting.html">Forecasting</a>
+            <a href="alerts.html">Alerts</a>
+            <a href="dashboard-manager.html" class="active">Manager View</a>
+            <a href="login.html" class="logout">Logout</a>
+        </div>
+        <div class="user-info">
+            <span>Manager Dashboard</span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="dashboard-header">
+            <h1>Manager Overview</h1>
+            <p>Store performance analytics and team management</p>
+            
+            <div class="manager-stats">
+                <div class="stat-card">
+                    <h3>Store Performance</h3>
+                    <span class="stat-number">94%</span>
+                    <p>+2% from last week</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Waste Reduction</h3>
+                    <span class="stat-number">$2,850</span>
+                    <p>Saved this month</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Team Productivity</h3>
+                    <span class="stat-number">88%</span>
+                    <p>Tasks completed</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Customer Satisfaction</h3>
+                    <span class="stat-number">4.7/5</span>
+                    <p>Based on reviews</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Multi-Store Overview -->
+        <section class="multi-store">
+            <h2>Multi-Store Performance</h2>
+            <div class="store-grid">
+                <div class="store-card">
+                    <h3>Main Store</h3>
+                    <div class="store-metrics">
+                        <div class="metric">
+                            <span class="metric-value">$12,450</span>
+                            <span class="metric-label">Daily Sales</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">$350</span>
+                            <span class="metric-label">Daily Waste</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">92%</span>
+                            <span class="metric-label">Efficiency</span>
+                        </div>
+                    </div>
+                    <div class="store-actions">
+                        <button class="btn-small">View Details</button>
+                        <button class="btn-small primary">Generate Report</button>
+                    </div>
+                </div>
+                
+                <div class="store-card">
+                    <h3>Downtown Branch</h3>
+                    <div class="store-metrics">
+                        <div class="metric">
+                            <span class="metric-value">$8,720</span>
+                            <span class="metric-label">Daily Sales</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">$280</span>
+                            <span class="metric-label">Daily Waste</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">88%</span>
+                            <span class="metric-label">Efficiency</span>
+                        </div>
+                    </div>
+                    <div class="store-actions">
+                        <button class="btn-small">View Details</button>
+                        <button class="btn-small primary">Generate Report</button>
+                    </div>
+                </div>
+                
+                <div class="store-card">
+                    <h3>Mall Location</h3>
+                    <div class="store-metrics">
+                        <div class="metric">
+                            <span class="metric-value">$15,230</span>
+                            <span class="metric-label">Daily Sales</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">$420</span>
+                            <span class="metric-label">Daily Waste</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">95%</span>
+                            <span class="metric-label">Efficiency</span>
+                        </div>
+                    </div>
+                    <div class="store-actions">
+                        <button class="btn-small">View Details</button>
+                        <button class="btn-small primary">Generate Report</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Management -->
+        <div class="dashboard-grid">
+            <section class="team-panel">
+                <h2>Team Management</h2>
+                <div class="team-list">
+                    <div class="team-member">
+                        <div class="member-info">
+                            <div class="member-avatar">JS</div>
+                            <div class="member-details">
+                                <h4>John Smith</h4>
+                                <p>Department Manager</p>
+                                <span class="member-status online">Online</span>
+                            </div>
+                        </div>
+                        <div class="member-stats">
+                            <span class="stat">Tasks: 18/20</span>
+                            <span class="stat">Alerts: 5</span>
+                        </div>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="member-info">
+                            <div class="member-avatar">MJ</div>
+                            <div class="member-details">
+                                <h4>Mary Johnson</h4>
+                                <p>Inventory Specialist</p>
+                                <span class="member-status online">Online</span>
+                            </div>
+                        </div>
+                        <div class="member-stats">
+                            <span class="stat">Tasks: 15/15</span>
+                            <span class="stat">Alerts: 3</span>
+                        </div>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="member-info">
+                            <div class="member-avatar">RB</div>
+                            <div class="member-details">
+                                <h4>Robert Brown</h4>
+                                <p>Store Associate</p>
+                                <span class="member-status offline">Offline</span>
+                            </div>
+                        </div>
+                        <div class="member-stats">
+                            <span class="stat">Tasks: 8/12</span>
+                            <span class="stat">Alerts: 2</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-actions">
+                    <button class="btn-primary">Assign Tasks</button>
+                    <button class="btn-secondary">View Schedule</button>
+                </div>
+            </section>
+
+            <!-- Financial Overview -->
+            <section class="financial-panel">
+                <h2>Financial Overview</h2>
+                <div class="financial-metrics">
+                    <div class="financial-item">
+                        <h4>Monthly Savings</h4>
+                        <div class="amount positive">+$2,850</div>
+                        <p>From waste reduction</p>
+                    </div>
+                    <div class="financial-item">
+                        <h4>Operational Costs</h4>
+                        <div class="amount">$8,450</div>
+                        <p>This month</p>
+                    </div>
+                    <div class="financial-item">
+                        <h4>Inventory Value</h4>
+                        <div class="amount">$45,670</div>
+                        <p>Current stock</p>
+                    </div>
+                </div>
+                
+                <div class="financial-chart">
+                    <h4>Waste Reduction Trend</h4>
+                    <div class="chart-placeholder">
+                        <div class="chart-bar" style="height: 80%">Jan</div>
+                        <div class="chart-bar" style="height: 70%">Feb</div>
+                        <div class="chart-bar" style="height: 60%">Mar</div>
+                        <div class="chart-bar" style="height: 50%">Apr</div>
+                        <div class="chart-bar" style="height: 40%">May</div>
+                        <div class="chart-bar" style="height: 30%">Jun</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Reports & Analytics -->
+        <section class="reports-section">
+            <h2>Reports & Analytics</h2>
+            <div class="reports-grid">
+                <div class="report-card">
+                    <h3>Weekly Performance</h3>
+                    <p>Store efficiency and sales report</p>
+                    <button class="btn-small primary">Generate</button>
+                </div>
+                
+                <div class="report-card">
+                    <h3>Waste Analysis</h3>
+                    <p>Detailed waste tracking and trends</p>
+                    <button class="btn-small primary">Generate</button>
+                </div>
+                
+                <div class="report-card">
+                    <h3>Inventory Report</h3>
+                    <p>Stock levels and turnover rates</p>
+                    <button class="btn-small primary">Generate</button>
+                </div>
+                
+                <div class="report-card">
+                    <h3>Team Performance</h3>
+                    <p>Staff productivity and task completion</p>
+                    <button class="btn-small primary">Generate</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent System Alerts -->
+        <section class="system-alerts">
+            <h2>System Notifications</h2>
+            <div class="notification-list">
+                <div class="notification info">
+                    <div class="notification-icon">ℹ️</div>
+                    <div class="notification-content">
+                        <h4>System Update Available</h4>
+                        <p>New features for inventory management</p>
+                        <span class="notification-time">2 hours ago</span>
+                    </div>
+                </div>
+                
+                <div class="notification warning">
+                    <div class="notification-icon">⚠️</div>
+                    <div class="notification-content">
+                        <h4>High Waste Alert - Dairy Section</h4>
+                        <p>15% increase in dairy product waste</p>
+                        <span class="notification-time">5 hours ago</span>
+                    </div>
+                </div>
+                
+                <div class="notification success">
+                    <div class="notification-icon">✅</div>
+                    <div class="notification-content">
+                        <h4>Monthly Goal Achieved</h4>
+                        <p>20% waste reduction target met</p>
+                        <span class="notification-time">1 day ago</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="js/manager.js"></script>
+</body>
+</html>

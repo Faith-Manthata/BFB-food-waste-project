@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard - FoodSave Pro</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <h2>FoodSave Pro</h2>
+        </div>
+        <div class="nav-links">
+            <a href="dashboard-employee.html" class="active">My Dashboard</a>
+            <a href="inventory.html">Inventory</a>
+            <a href="alerts.html">Alerts</a>
+            <a href="login.html" class="logout">Logout</a>
+        </div>
+        <div class="user-info">
+            <span>Employee Dashboard</span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="dashboard-header">
+            <h1>Welcome, Store Associate!</h1>
+            <p>Your daily tasks and priority alerts</p>
+            
+            <div class="employee-stats">
+                <div class="stat-card">
+                    <h3>My Tasks</h3>
+                    <span class="stat-number">8</span>
+                </div>
+                <div class="stat-card">
+                    <h3>Urgent Alerts</h3>
+                    <span class="stat-number warning">3</span>
+                </div>
+                <div class="stat-card">
+                    <h3>Completed Today</h3>
+                    <span class="stat-number">12</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Quick Actions -->
+        <section class="quick-actions">
+            <h2>Quick Actions</h2>
+            <div class="action-grid">
+                <div class="action-card" onclick="location.href='inventory.html'">
+                    <div class="action-icon">📦</div>
+                    <h3>Update Stock</h3>
+                    <p>Record incoming inventory</p>
+                </div>
+                <div class="action-card" onclick="location.href='alerts.html'">
+                    <div class="action-icon">⚠️</div>
+                    <h3>Check Alerts</h3>
+                    <p>Review expiry alerts</p>
+                </div>
+                <div class="action-card">
+                    <div class="action-icon">🏷️</div>
+                    <h3>Apply Discounts</h3>
+                    <p>Manage product pricing</p>
+                </div>
+                <div class="action-card">
+                    <div class="action-icon">📋</div>
+                    <h3>Daily Report</h3>
+                    <p>Submit end-of-day report</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Priority Tasks -->
+        <div class="dashboard-grid">
+            <section class="tasks-panel">
+                <h2>Priority Tasks</h2>
+                <div class="task-list">
+                    <div class="task-item urgent">
+                        <div class="task-checkbox">
+                            <input type="checkbox" id="task1">
+                        </div>
+                        <div class="task-content">
+                            <h4>Apply 30% discount to expiring milk</h4>
+                            <p>Dairy aisle - expires today</p>
+                            <span class="task-time">Due: Today</span>
+                        </div>
+                    </div>
+                    
+                    <div class="task-item warning">
+                        <div class="task-checkbox">
+                            <input type="checkbox" id="task2">
+                        </div>
+                        <div class="task-content">
+                            <h4>Move chicken breast to front display</h4>
+                            <p>Meat section - expires tomorrow</p>
+                            <span class="task-time">Due: Today</span>
+                        </div>
+                    </div>
+                    
+                    <div class="task-item">
+                        <div class="task-checkbox">
+                            <input type="checkbox" id="task3">
+                        </div>
+                        <div class="task-content">
+                            <h4>Restock bread shelves</h4>
+                            <p>Bakery section - low inventory</p>
+                            <span class="task-time">Due: EOD</span>
+                        </div>
+                    </div>
+                    
+                    <div class="task-item">
+                        <div class="task-checkbox">
+                            <input type="checkbox" id="task4">
+                        </div>
+                        <div class="task-content">
+                            <h4>Update produce inventory count</h4>
+                            <p>Fresh fruits and vegetables</p>
+                            <span class="task-time">Due: 4:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-secondary">View All Tasks</button>
+            </section>
+
+            <!-- My Alerts -->
+            <section class="alerts-panel">
+                <h2>My Assigned Alerts</h2>
+                <div class="alerts-list">
+                    <div class="alert-item urgent">
+                        <span class="alert-icon">⚠️</span>
+                        <div class="alert-content">
+                            <h4>Milk - 2% (Dairy)</h4>
+                            <p>Expires today - 15 units remaining</p>
+                            <span class="assigned-to">Assigned to you</span>
+                        </div>
+                    </div>
+                    
+                    <div class="alert-item warning">
+                        <span class="alert-icon">⚠️</span>
+                        <div class="alert-content">
+                            <h4>Chicken Breast (Meat)</h4>
+                            <p>Expires tomorrow - 8 units remaining</p>
+                            <span class="assigned-to">Assigned to you</span>
+                        </div>
+                    </div>
+                    
+                    <div class="alert-item warning">
+                        <span class="alert-icon">⚠️</span>
+                        <div class="alert-content">
+                            <h4>Whole Wheat Bread (Bakery)</h4>
+                            <p>Expires in 2 days - 12 units remaining</p>
+                            <span class="assigned-to">Assigned to you</span>
+                        </div>
+                    </div>
+                </div>
+                <a href="alerts.html" class="view-all">View All Alerts</a>
+            </section>
+        </div>
+
+        <!-- Recent Activity -->
+        <section class="activity-section">
+            <h2>Recent Activity</h2>
+            <div class="activity-list">
+                <div class="activity-item">
+                    <div class="activity-icon">✅</div>
+                    <div class="activity-content">
+                        <p><strong>You</strong> applied discount to yogurt</p>
+                        <span class="activity-time">2 hours ago</span>
+                    </div>
+                </div>
+                
+                <div class="activity-item">
+                    <div class="activity-icon">📦</div>
+                    <div class="activity-content">
+                        <p><strong>You</strong> updated apple stock count</p>
+                        <span class="activity-time">3 hours ago</span>
+                    </div>
+                </div>
+                
+                <div class="activity-item">
+                    <div class="activity-icon">⚠️</div>
+                    <div class="activity-content">
+                        <p><strong>System</strong> new alert for expiring milk</p>
+                        <span class="activity-time">4 hours ago</span>
+                    </div>
+                </div>
+                
+                <div class="activity-item">
+                    <div class="activity-icon">✅</div>
+                    <div class="activity-content">
+                        <p><strong>You</strong> completed daily inventory check</p>
+                        <span class="activity-time">Yesterday</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Shift Information -->
+        <section class="shift-info">
+            <h2>Today's Shift</h2>
+            <div class="shift-details">
+                <div class="shift-item">
+                    <strong>Shift:</strong> Morning (8:00 AM - 4:00 PM)
+                </div>
+                <div class="shift-item">
+                    <strong>Manager on Duty:</strong> John Smith
+                </div>
+                <div class="shift-item">
+                    <strong>Department:</strong> Perishables
+                </div>
+                <div class="shift-item">
+                    <strong>Tasks Completed:</strong> 12/20
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="js/employee.js"></script>
+</body>
+</html>
