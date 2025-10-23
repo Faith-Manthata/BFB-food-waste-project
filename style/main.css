@@ -348,3 +348,133 @@ body {
         flex-direction: column;
     }
 }
+/* Inventory Page Styles */
+.header-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.inventory-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.search-filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.search-bar {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.75rem;
+    border: 2px solid #ecf0f1;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.filter-select {
+    padding: 0.75rem;
+    border: 2px solid #ecf0f1;
+    border-radius: 6px;
+    background: white;
+}
+
+.inventory-table {
+    overflow-x: auto;
+}
+
+.inventory-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.inventory-table th,
+.inventory-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.inventory-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.expiry-urgent {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.expiry-warning {
+    color: #f39c12;
+    font-weight: bold;
+}
+
+.expiry-safe {
+    color: #27ae60;
+}
+
+.status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.status.urgent {
+    background-color: #fdedec;
+    color: #e74c3c;
+}
+
+.status.warning {
+    background-color: #fef9e7;
+    color: #f39c12;
+}
+
+.status.safe {
+    background-color: #d5f4e6;
+    color: #27ae60;
+}
+
+.btn-small {
+    padding: 0.25rem 0.75rem;
+    border: 1px solid #3498db;
+    background: white;
+    color: #3498db;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.btn-small:hover {
+    background: #3498db;
+    color: white;
+}
+
+.btn-small.warning {
+    border-color: #f39c12;
+    color: #f39c12;
+}
+
+.btn-small.warning:hover {
+    background: #f39c12;
+    color: white;
+}
+
+.btn-small.danger {
+    border-color: #e74c3c;
+    color: #e74c3c;
+}
+
+.btn-small.danger:hover {
+    background: #e74c3c;
+    color: white;
+}
