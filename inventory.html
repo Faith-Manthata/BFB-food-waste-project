@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management - FoodSave Pro</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <h2>FoodSave Pro</h2>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Dashboard</a>
+            <a href="inventory.html" class="active">Inventory</a>
+            <a href="forecasting.html">Forecasting</a>
+            <a href="alerts.html">Alerts</a>
+            <a href="login.html" class="logout">Logout</a>
+        </div>
+        <div class="user-info">
+            <span>Inventory Management</span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="dashboard-header">
+            <h1>Inventory Management</h1>
+            <div class="header-actions">
+                <button class="btn-primary">Add New Product</button>
+                <button class="btn-secondary">Export Report</button>
+            </div>
+        </header>
+
+        <!-- Inventory Table -->
+        <section class="inventory-section">
+            <div class="search-filters">
+                <input type="text" placeholder="Search products..." class="search-bar">
+                <select class="filter-select">
+                    <option>All Categories</option>
+                    <option>Dairy</option>
+                    <option>Produce</option>
+                    <option>Meat</option>
+                    <option>Bakery</option>
+                    <option>Deli</option>
+                </select>
+                <select class="filter-select">
+                    <option>All Status</option>
+                    <option>In Stock</option>
+                    <option>Low Stock</option>
+                    <option>Out of Stock</option>
+                </select>
+            </div>
+
+            <div class="inventory-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Category</th>
+                            <th>Current Stock</th>
+                            <th>Expiry Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Milk - 2%</td>
+                            <td>Dairy</td>
+                            <td>45 units</td>
+                            <td class="expiry-urgent">2024-01-15</td>
+                            <td><span class="status urgent">Urgent</span></td>
+                            <td>
+                                <button class="btn-small">Edit</button>
+                                <button class="btn-small danger">Discount</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Chicken Breast</td>
+                            <td>Meat</td>
+                            <td>23 units</td>
+                            <td class="expiry-warning">2024-01-18</td>
+                            <td><span class="status warning">Warning</span></td>
+                            <td>
+                                <button class="btn-small">Edit</button>
+                                <button class="btn-small warning">Promote</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Whole Wheat Bread</td>
+                            <td>Bakery</td>
+                            <td>15 units</td>
+                            <td class="expiry-warning">2024-01-17</td>
+                            <td><span class="status warning">Warning</span></td>
+                            <td>
+                                <button class="btn-small">Edit</button>
+                                <button class="btn-small warning">Promote</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Apples</td>
+                            <td>Produce</td>
+                            <td>78 units</td>
+                            <td class="expiry-safe">2024-01-25</td>
+                            <td><span class="status safe">Safe</span></td>
+                            <td>
+                                <button class="btn-small">Edit</button>
+                                <button class="btn-small">View</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Yogurt</td>
+                            <td>Dairy</td>
+                            <td>32 units</td>
+                            <td class="expiry-safe">2024-01-22</td>
+                            <td><span class="status safe">Safe</span></td>
+                            <td>
+                                <button class="btn-small">Edit</button>
+                                <button class="btn-small">View</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <script src="js/inventory.js"></script>
+</body>
+</html>
