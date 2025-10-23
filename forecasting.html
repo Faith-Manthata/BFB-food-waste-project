@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demand Forecasting - FoodSave Pro</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <h2>FoodSave Pro</h2>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Dashboard</a>
+            <a href="inventory.html">Inventory</a>
+            <a href="forecasting.html" class="active">Forecasting</a>
+            <a href="alerts.html">Alerts</a>
+            <a href="login.html" class="logout">Logout</a>
+        </div>
+        <div class="user-info">
+            <span>Demand Forecasting</span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="dashboard-header">
+            <h1>Demand Forecasting</h1>
+            <p>Predict future demand to optimize inventory and reduce waste</p>
+        </header>
+
+        <div class="forecasting-content">
+            <!-- Forecasting Controls -->
+            <div class="forecast-controls">
+                <div class="control-group">
+                    <label>Product Category:</label>
+                    <select id="categorySelect">
+                        <option value="all">All Categories</option>
+                        <option value="dairy">Dairy</option>
+                        <option value="produce">Produce</option>
+                        <option value="meat">Meat</option>
+                        <option value="bakery">Bakery</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label>Time Period:</label>
+                    <select id="periodSelect">
+                        <option value="7">Next 7 Days</option>
+                        <option value="14">Next 14 Days</option>
+                        <option value="30">Next 30 Days</option>
+                    </select>
+                </div>
+                <button class="btn-primary" onclick="generateForecast()">Generate Forecast</button>
+            </div>
+
+            <!-- Forecast Results -->
+            <div class="forecast-results">
+                <div class="result-card">
+                    <h3>Predicted Demand</h3>
+                    <div class="prediction-value">+15%</div>
+                    <p>Expected increase in sales</p>
+                </div>
+                <div class="result-card">
+                    <h3>Recommended Order</h3>
+                    <div class="prediction-value">+20%</div>
+                    <p>Optimal inventory level</p>
+                </div>
+                <div class="result-card">
+                    <h3>Waste Risk</h3>
+                    <div class="prediction-value low">Low</div>
+                    <p>Current stock levels are optimal</p>
+                </div>
+            </div>
+
+            <!-- Forecast Chart -->
+            <div class="forecast-chart-container">
+                <h3>Demand Prediction Trend</h3>
+                <div class="chart-placeholder-large">
+                    <div class="chart-bar" style="height: 40%">Mon</div>
+                    <div class="chart-bar" style="height: 60%">Tue</div>
+                    <div class="chart-bar" style="height: 80%">Wed</div>
+                    <div class="chart-bar" style="height: 95%">Thu</div>
+                    <div class="chart-bar" style="height: 75%">Fri</div>
+                    <div class="chart-bar" style="height: 65%">Sat</div>
+                    <div class="chart-bar" style="height: 50%">Sun</div>
+                </div>
+            </div>
+
+            <!-- Product Recommendations -->
+            <div class="recommendations">
+                <h3>Inventory Recommendations</h3>
+                <div class="recommendation-list">
+                    <div class="recommendation-item">
+                        <h4>Dairy Products</h4>
+                        <p>Increase stock by 20% for next week</p>
+                        <span class="confidence high">85% confidence</span>
+                    </div>
+                    <div class="recommendation-item">
+                        <h4>Fresh Produce</h4>
+                        <p>Maintain current levels</p>
+                        <span class="confidence medium">70% confidence</span>
+                    </div>
+                    <div class="recommendation-item">
+                        <h4>Bakery Items</h4>
+                        <p>Reduce stock by 10% for weekend</p>
+                        <span class="confidence low">60% confidence</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/forecasting.js"></script>
+</body>
+</html>
