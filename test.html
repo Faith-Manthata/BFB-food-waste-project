@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test { background: red; color: white; padding: 20px; margin: 10px; }
+        .working { background: green; }
+    </style>
+</head>
+<body>
+    <h1>Link Test Page</h1>
+    
+    <div class="test" id="inline-css">
+        Inline CSS Test - If this is red, basic CSS works
+    </div>
+    
+    <div class="test" id="external-css">
+        External CSS Test - If this turns green, external CSS files work
+    </div>
+    
+    <button onclick="testJS()">JavaScript Test - Click Me</button>
+    
+    <div id="js-result" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc;"></div>
+
+    <h2>File Structure Check:</h2>
+    <ul>
+        <li>Main Folder: BFB-food-waste-project</li>
+        <li>CSS Files: styles/main.css, styles/auth.css, styles/dashboard.css</li>
+        <li>JS Files: js/main.js, js/auth.js, etc.</li>
+    </ul>
+
+    <script>
+        function testJS() {
+            document.getElementById('js-result').innerHTML = 
+                '<strong style="color: green;">✓ JavaScript is working!</strong>';
+        }
+        
+        // Test if page loaded
+        document.getElementById('js-result').innerHTML += 
+            '<p>Page loaded successfully</p>';
+    </script>
+</body>
+</html>
