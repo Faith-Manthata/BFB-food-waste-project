@@ -162,5 +162,31 @@
     </div>
 
     <script src="js/main.js"></script>
+    <script>
+// Force full height on all pages
+document.addEventListener('DOMContentLoaded', function() {
+    // Set minimum height for main container
+    const container = document.querySelector('.container');
+    const navbar = document.querySelector('.navbar');
+    
+    if (container && navbar) {
+        const navbarHeight = navbar.offsetHeight;
+        container.style.minHeight = `calc(100vh - ${navbarHeight}px)`;
+    }
+    
+    // Ensure body takes full height
+    document.body.style.minHeight = '100vh';
+    document.documentElement.style.height = '100%';
+    
+    // Fix for mobile viewport
+    const viewport = document.querySelector('meta[name="viewport"]');
+    if (!viewport) {
+        const meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, initial-scale=1.0';
+        document.head.appendChild(meta);
+    }
+});
+</script>
 </body>
 </html>
