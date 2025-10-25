@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Food Waste Reduction Platform - Dashboard</title>
+    <!-- LINK CSS FILES -->
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/dashboard.css">
 </head>
@@ -94,7 +95,7 @@
                 <h2>Expiry Alerts</h2>
                 <div class="alerts-list">
                     <div class="alert-item urgent">
-                        <span class="alert-icon">⚠</span>
+                        <span class="alert-icon">⚠️</span>
                         <div class="alert-content">
                             <h4>Milk - 2%</h4>
                             <p>Expires: Today</p>
@@ -102,7 +103,7 @@
                         </div>
                     </div>
                     <div class="alert-item warning">
-                        <span class="alert-icon">⚠</span>
+                        <span class="alert-icon">⚠️</span>
                         <div class="alert-content">
                             <h4>Chicken Breast</h4>
                             <p>Expires: Tomorrow</p>
@@ -110,7 +111,7 @@
                         </div>
                     </div>
                     <div class="alert-item warning">
-                        <span class="alert-icon">⚠</span>
+                        <span class="alert-icon">⚠️</span>
                         <div class="alert-content">
                             <h4>Whole Wheat Bread</h4>
                             <p>Expires: 2 days</p>
@@ -161,32 +162,25 @@
         </section>
     </div>
 
+    <!-- LINK JAVASCRIPT FILES -->
     <script src="js/main.js"></script>
+    
     <script>
-// Force full height on all pages
-document.addEventListener('DOMContentLoaded', function() {
-    // Set minimum height for main container
-    const container = document.querySelector('.container');
-    const navbar = document.querySelector('.navbar');
-    
-    if (container && navbar) {
-        const navbarHeight = navbar.offsetHeight;
-        container.style.minHeight = `calc(100vh - ${navbarHeight}px)`;
-    }
-    
-    // Ensure body takes full height
-    document.body.style.minHeight = '100vh';
-    document.documentElement.style.height = '100%';
-    
-    // Fix for mobile viewport
-    const viewport = document.querySelector('meta[name="viewport"]');
-    if (!viewport) {
-        const meta = document.createElement('meta');
-        meta.name = 'viewport';
-        meta.content = 'width=device-width, initial-scale=1.0';
-        document.head.appendChild(meta);
-    }
-});
-</script>
+    // Force full height on all pages
+    document.addEventListener('DOMContentLoaded', function() {
+        // Set minimum height for main container
+        const container = document.querySelector('.container');
+        const navbar = document.querySelector('.navbar');
+        
+        if (container && navbar) {
+            const navbarHeight = navbar.offsetHeight;
+            container.style.minHeight = `calc(100vh - ${navbarHeight}px)`;
+        }
+        
+        // Ensure body takes full height
+        document.body.style.minHeight = '100vh';
+        document.documentElement.style.height = '100%';
+    });
+    </script>
 </body>
 </html>
