@@ -3,185 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food Waste Reduction Platform - Dashboard</title>
-    <!-- LINK CSS FILES -->
+    <title>BFB Food Waste Project - Home</title>
     <link rel="stylesheet" href="style/main.css">
-    <link rel="stylesheet" href="style/dashboard.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-brand">
-            <h2>FoodSave Pro</h2>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <span class="logo-icon">🌱</span>
+                BFB Food Waste Project
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="dashboard-manager.html">Dashboard</a></li>
+                </ul>
+            </nav>
         </div>
-        <div class="nav-links">
-            <a href="index.html" class="active">Dashboard</a>
-            <a href="inventory.html">Inventory</a>
-            <a href="forecasting.html">Forecasting</a>
-            <a href="alerts.html">Alerts</a>
-            <a href="login.html" class="logout">Logout</a>
-        </div>
-        <div class="user-info">
-            <span>Manager Dashboard</span>
-            
-        </div>
-    </nav>
+    </header>
 
-    <!-- Main Content -->
-    <div class="container">
-        <header class="dashboard-header">
-            <h1>Inventory Dashboard</h1>
-            <div class="header-stats">
-                <div class="stat-card">
-                    <h3>Total Products</h3>
-                    <span class="stat-number">1,247</span>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Reducing Food Waste in the Supply Chain</h1>
+            <p>Our platform helps businesses track, manage, and reduce food waste throughout the supply chain, saving money and protecting the environment.</p>
+            <a href="login.html" class="btn">Get Started</a>
+            <a href="about.html" class="btn btn-secondary">Learn About Us</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Our Solutions</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Inventory Management</h3>
+                    <p>Track food inventory in real-time to minimize spoilage and optimize ordering.</p>
                 </div>
-                <div class="stat-card">
-                    <h3>Near Expiry</h3>
-                    <span class="stat-number warning">45</span>
+                <div class="feature-card">
+                    <div class="feature-icon">🔮</div>
+                    <h3>Waste Forecasting</h3>
+                    <p>Predict potential waste using AI algorithms to take proactive measures.</p>
                 </div>
-                <div class="stat-card">
-                    <h3>Expired</h3>
-                    <span class="stat-number danger">12</span>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Analytics & Reporting</h3>
+                    <p>Gain insights into waste patterns and identify improvement opportunities.</p>
                 </div>
             </div>
-        </header>
-
-        <!-- Inventory Overview -->
-        <section class="inventory-overview">
-            <h2>Category Overview</h2>
-            <div class="category-grid">
-                <div class="category-card" data-category="deli">
-                    <h3>Deli Items</h3>
-                    <div class="stock-level">
-                        <span class="level high">85%</span>
-                        <span class="expiry-count">5 near expiry</span>
-                    </div>
-                </div>
-                <div class="category-card" data-category="produce">
-                    <h3>Fresh Produce</h3>
-                    <div class="stock-level">
-                        <span class="level medium">65%</span>
-                        <span class="expiry-count warning">12 near expiry</span>
-                    </div>
-                </div>
-                <div class="category-card" data-category="dairy">
-                    <h3>Dairy Products</h3>
-                    <div class="stock-level">
-                        <span class="level low">45%</span>
-                        <span class="expiry-count danger">8 near expiry</span>
-                    </div>
-                </div>
-                <div class="category-card" data-category="bakery">
-                    <h3>Bakery</h3>
-                    <div class="stock-level">
-                        <span class="level high">78%</span>
-                        <span class="expiry-count">3 near expiry</span>
-                    </div>
-                </div>
-                <div class="category-card" data-category="meat">
-                    <h3>Meat & Poultry</h3>
-                    <div class="stock-level">
-                        <span class="level medium">60%</span>
-                        <span class="expiry-count warning">7 near expiry</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Alerts and Forecasting Sections -->
-        <div class="dashboard-grid">
-            <!-- Expiry Alerts -->
-            <section class="alerts-panel">
-                <h2>Expiry Alerts</h2>
-                <div class="alerts-list">
-                    <div class="alert-item urgent">
-                        <span class="alert-icon">⚠️</span>
-                        <div class="alert-content">
-                            <h4>Milk - 2%</h4>
-                            <p>Expires: Today</p>
-                            <span class="alert-category">Dairy</span>
-                        </div>
-                    </div>
-                    <div class="alert-item warning">
-                        <span class="alert-icon">⚠️</span>
-                        <div class="alert-content">
-                            <h4>Chicken Breast</h4>
-                            <p>Expires: Tomorrow</p>
-                            <span class="alert-category">Meat</span>
-                        </div>
-                    </div>
-                    <div class="alert-item warning">
-                        <span class="alert-icon">⚠️</span>
-                        <div class="alert-content">
-                            <h4>Whole Wheat Bread</h4>
-                            <p>Expires: 2 days</p>
-                            <span class="alert-category">Bakery</span>
-                        </div>
-                    </div>
-                </div>
-                <a href="alerts.html" class="view-all">View All Alerts</a>
-            </section>
-
-            <!-- Forecasting Module -->
-            <section class="forecasting-panel">
-                <h2>Demand Forecasting</h2>
-                <div class="forecast-summary">
-                    <div class="forecast-item">
-                        <h4>Next Week Prediction</h4>
-                        <p>Expected demand increase: <strong>15%</strong></p>
-                        <p>Recommended order: <strong>+20% dairy</strong></p>
-                    </div>
-                    <div class="forecast-chart">
-                        <div class="chart-placeholder">
-                            <div class="chart-bar" style="height: 60%"></div>
-                            <div class="chart-bar" style="height: 80%"></div>
-                            <div class="chart-bar" style="height: 95%"></div>
-                            <div class="chart-bar" style="height: 75%"></div>
-                        </div>
-                    </div>
-                </div>
-                <a href="forecasting.html" class="view-all">Detailed Forecast</a>
-            </section>
         </div>
+    </section>
 
-        <!-- Role-based Access Notice -->
-        <section class="role-section">
-            <h2>Role-based Access</h2>
-            <div class="role-cards">
-                <div class="role-card">
-                    <h3>Employee View</h3>
-                    <p>Basic inventory tracking and low-stock alerts</p>
-                    <a href="dashboard-employee.html" class="btn-secondary">Switch to Employee View</a>
-                </div>
-                <div class="role-card">
-                    <h3>Manager View</h3>
-                    <p>Full analytics, multi-location visibility, and reporting</p>
-                    <a href="dashboard-manager.html" class="btn-primary">Current View</a>
+    <!-- Database Section -->
+    <section class="database-section">
+        <div class="container">
+            <div class="database-info">
+                <h2>Database Design</h2>
+                <p>Our system uses a well-structured SQLite database with proper normalization to efficiently manage food waste data across the supply chain.</p>
+                
+                <h3 style="margin-top: 2rem;">Database Schema</h3>
+                <p>The database includes at least 3 tables with properly defined primary keys, foreign keys, and relationships:</p>
+                
+                <div class="tables-grid">
+                    <div class="table-card">
+                        <h3>Users Table</h3>
+                        <ul>
+                            <li>user_id (PK)</li>
+                            <li>username</li>
+                            <li>password_hash</li>
+                            <li>email</li>
+                            <li>role</li>
+                            <li>created_at</li>
+                        </ul>
+                    </div>
+                    <div class="table-card">
+                        <h3>Inventory Table</h3>
+                        <ul>
+                            <li>item_id (PK)</li>
+                            <li>item_name</li>
+                            <li>category</li>
+                            <li>quantity</li>
+                            <li>expiry_date</li>
+                            <li>supplier_id (FK)</li>
+                            <li>added_date</li>
+                        </ul>
+                    </div>
+                    <div class="table-card">
+                        <h3>Waste Records Table</h3>
+                        <ul>
+                            <li>waste_id (PK)</li>
+                            <li>item_id (FK)</li>
+                            <li>quantity_wasted</li>
+                            <li>reason</li>
+                            <li>date_recorded</li>
+                            <li>recorded_by (FK)</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 
-    <!-- LINK JAVASCRIPT FILES -->
+    <!-- About Preview Section -->
+    <section class="about-preview">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Our Mission</h2>
+                    <p>Food waste is a critical global issue, with approximately one-third of all food produced for human consumption lost or wasted. Our platform addresses this problem directly within the supply chain.</p>
+                    <a href="about.html" class="btn">Learn More</a>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Food supply chain">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2024 BFB Food Waste Project. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="login.html">Login</a>
+            </div>
+        </div>
+    </footer>
+
     <script src="js/main.js"></script>
-    
-    <script>
-    // Force full height on all pages
-    document.addEventListener('DOMContentLoaded', function() {
-        // Set minimum height for main container
-        const container = document.querySelector('.container');
-        const navbar = document.querySelector('.navbar');
-        
-        if (container && navbar) {
-            const navbarHeight = navbar.offsetHeight;
-            container.style.minHeight = `calc(100vh - ${navbarHeight}px)`;
-        }
-        
-        // Ensure body takes full height
-        document.body.style.minHeight = '100vh';
-        document.documentElement.style.height = '100%';
-    });
-    </script>
 </body>
 </html>
