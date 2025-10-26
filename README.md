@@ -33,3 +33,48 @@ A web-based platform designed to reduce retail food waste through improved suppl
    - Employee: emp@foodsave.com / pass123
 
 ### Project Structure
+# BFB Food Waste Project
+
+## Database Entity Relationship Diagram
+
+```mermaid
+erDiagram
+    users {
+        INTEGER user_id PK
+        VARCHAR username
+        VARCHAR password_hash
+        VARCHAR email
+        VARCHAR role
+        DATETIME created_at
+    }
+
+    suppliers {
+        INTEGER supplier_id PK
+        VARCHAR supplier_name
+        VARCHAR contact_email
+        VARCHAR phone
+    }
+
+    inventory {
+        INTEGER item_id PK
+        VARCHAR item_name
+        VARCHAR category
+        INTEGER quantity
+        DATE expiry_date
+        INTEGER supplier_id FK
+        DATETIME added_date
+    }
+
+    waste_records {
+        INTEGER waste_id PK
+        INTEGER item_id FK
+        INTEGER quantity_wasted
+        TEXT reason
+        DATETIME date_recorded
+        INTEGER recorded_by FK
+    }
+
+    users ||--o{ waste_records : "records"
+    suppliers ||--o{ inventory : "supplies"
+    inventory ||--o{ waste_records : "tracks_waste_for"
+```
