@@ -4,7 +4,467 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Demand Forecasting - FoodSave Pro</title>
-    <link rel="stylesheet" href="style/main.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .nav-brand h2 {
+            color: #2e7d32;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .nav-links a.active {
+            background: #2e7d32;
+            color: white;
+        }
+
+        .logout {
+            background: #ff6b6b;
+            color: white !important;
+        }
+
+        .logout:hover {
+            background: #ff5252 !important;
+        }
+
+        .user-info {
+            background: #2e7d32;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+        }
+
+        /* Dashboard Header */
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .dashboard-header h1 {
+            font-size: 2.5rem;
+            color: #2e7d32;
+            margin-bottom: 0.5rem;
+        }
+
+        .dashboard-header p {
+            font-size: 1.2rem;
+            color: #666;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+        /* Forecasting Content */
+        .forecasting-content {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Forecast Controls */
+        .forecast-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .control-group label {
+            font-weight: 600;
+            color: #2e7d32;
+            margin-bottom: 0.5rem;
+        }
+
+        .control-group select {
+            padding: 0.8rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .control-group select:focus {
+            outline: none;
+            border-color: #2e7d32;
+            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+        }
+
+        .btn-primary {
+            background: #2e7d32;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            align-self: end;
+        }
+
+        .btn-primary:hover {
+            background: #1b5e20;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(46, 125, 50, 0.3);
+        }
+
+        /* Forecast Results */
+        .forecast-results {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .result-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border-top: 5px solid #2e7d32;
+        }
+
+        .result-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .result-card h3 {
+            color: #2e7d32;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .prediction-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #2e7d32;
+        }
+
+        .low {
+            color: #4caf50;
+        }
+
+        .medium {
+            color: #ff9800;
+        }
+
+        .high {
+            color: #f44336;
+        }
+
+        .result-card p {
+            color: #666;
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+        /* Forecast Chart */
+        .forecast-chart-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+        }
+
+        .forecast-chart-container h3 {
+            color: #2e7d32;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        .chart-placeholder-large {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            height: 300px;
+            padding: 2rem;
+            background: linear-gradient(to bottom, #f8f9fa, #e8f5e9);
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .chart-placeholder-large::before {
+            content: "Weekly Demand Forecast (Units)";
+            position: absolute;
+            top: -25px;
+            left: 0;
+            font-weight: 600;
+            color: #666;
+        }
+
+        .chart-bar {
+            background: linear-gradient(to top, #2e7d32, #4caf50);
+            width: 60px;
+            border-radius: 5px 5px 0 0;
+            position: relative;
+            transition: height 0.3s ease;
+            display: flex;
+            align-items: start;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            padding-top: 10px;
+        }
+
+        .chart-bar::after {
+            content: attr(style);
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #666;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* Recommendations */
+        .recommendations {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .recommendations h3 {
+            color: #2e7d32;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        .recommendation-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .recommendation-item {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid #2e7d32;
+            transition: transform 0.3s ease;
+        }
+
+        .recommendation-item:hover {
+            transform: translateX(5px);
+            background: #e8f5e9;
+        }
+
+        .recommendation-item h4 {
+            color: #2e7d32;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .recommendation-item p {
+            color: #666;
+            margin-bottom: 1rem;
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+        .confidence {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .high {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .medium {
+            background: #fff3e0;
+            color: #ff9800;
+        }
+
+        .low {
+            background: #ffebee;
+            color: #f44336;
+        }
+
+        /* Currency Styling */
+        .currency {
+            font-weight: 700;
+            color: #2e7d32;
+        }
+
+        .currency::before {
+            content: "R ";
+        }
+
+        /* Financial Impact Section */
+        .financial-impact {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+
+        .financial-impact h3 {
+            color: #2e7d32;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .impact-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .impact-item:hover {
+            transform: translateY(-3px);
+            background: #e8f5e9;
+        }
+
+        .impact-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2e7d32;
+            margin-bottom: 0.5rem;
+        }
+
+        .impact-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .forecast-controls {
+                grid-template-columns: 1fr;
+            }
+            
+            .forecast-results, .recommendation-list, .impact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .chart-placeholder-large {
+                flex-direction: column;
+                height: auto;
+                align-items: center;
+            }
+            
+            .chart-bar {
+                width: 80%;
+                height: 40px !important;
+                margin-bottom: 2rem;
+                border-radius: 0 5px 5px 0;
+                align-items: center;
+                justify-content: start;
+                padding-left: 1rem;
+            }
+            
+            .chart-bar::after {
+                bottom: -25px;
+                left: 0;
+                transform: none;
+            }
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -25,8 +485,8 @@
 
     <div class="container">
         <header class="dashboard-header">
-            <h1>Demand Forecasting</h1>
-            <p>Predict future demand to optimize inventory and reduce waste</p>
+            <h1>Demand Forecasting Analytics</h1>
+            <p>Leverage advanced predictive analytics to forecast product demand, optimize inventory levels, and significantly reduce food waste. Our machine learning algorithms analyze historical sales data, seasonal patterns, and market trends to provide accurate predictions that help you make informed purchasing decisions and maximize profitability while minimizing waste.</p>
         </header>
 
         <div class="forecasting-content">
@@ -36,10 +496,12 @@
                     <label>Product Category:</label>
                     <select id="categorySelect">
                         <option value="all">All Categories</option>
-                        <option value="dairy">Dairy</option>
-                        <option value="produce">Produce</option>
-                        <option value="meat">Meat</option>
-                        <option value="bakery">Bakery</option>
+                        <option value="dairy">Dairy Products</option>
+                        <option value="produce">Fresh Produce</option>
+                        <option value="meat">Meat & Poultry</option>
+                        <option value="bakery">Bakery Items</option>
+                        <option value="beverages">Beverages</option>
+                        <option value="frozen">Frozen Foods</option>
                     </select>
                 </div>
                 <div class="control-group">
@@ -48,6 +510,16 @@
                         <option value="7">Next 7 Days</option>
                         <option value="14">Next 14 Days</option>
                         <option value="30">Next 30 Days</option>
+                        <option value="90">Next Quarter</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label>Store Location:</label>
+                    <select id="storeSelect">
+                        <option value="all">All Locations</option>
+                        <option value="main">Main Store</option>
+                        <option value="downtown">Downtown Branch</option>
+                        <option value="mall">Mall Location</option>
                     </select>
                 </div>
                 <button class="btn-primary" onclick="generateForecast()">Generate Forecast</button>
@@ -56,25 +528,25 @@
             <!-- Forecast Results -->
             <div class="forecast-results">
                 <div class="result-card">
-                    <h3>Predicted Demand</h3>
+                    <h3>Predicted Demand Increase</h3>
                     <div class="prediction-value">+15%</div>
-                    <p>Expected increase in sales</p>
+                    <p>Expected increase in sales volume based on historical data analysis and current market trends for the selected period.</p>
                 </div>
                 <div class="result-card">
-                    <h3>Recommended Order</h3>
+                    <h3>Recommended Order Quantity</h3>
                     <div class="prediction-value">+20%</div>
-                    <p>Optimal inventory level</p>
+                    <p>Optimal inventory level adjustment to meet forecasted demand while maintaining efficient stock turnover rates.</p>
                 </div>
                 <div class="result-card">
-                    <h3>Waste Risk</h3>
-                    <div class="prediction-value low">Low</div>
-                    <p>Current stock levels are optimal</p>
+                    <h3>Waste Risk Assessment</h3>
+                    <div class="prediction-value low">Low Risk</div>
+                    <p>Current inventory management practices show minimal risk of waste based on forecasted demand patterns.</p>
                 </div>
             </div>
 
             <!-- Forecast Chart -->
             <div class="forecast-chart-container">
-                <h3>Demand Prediction Trend</h3>
+                <h3>Weekly Demand Prediction Trend Analysis</h3>
                 <div class="chart-placeholder-large">
                     <div class="chart-bar" style="height: 40%">Mon</div>
                     <div class="chart-bar" style="height: 60%">Tue</div>
@@ -88,28 +560,78 @@
 
             <!-- Product Recommendations -->
             <div class="recommendations">
-                <h3>Inventory Recommendations</h3>
+                <h3>Strategic Inventory Recommendations</h3>
                 <div class="recommendation-list">
                     <div class="recommendation-item">
-                        <h4>Dairy Products</h4>
-                        <p>Increase stock by 20% for next week</p>
+                        <h4>Dairy Products Optimization</h4>
+                        <p>Increase milk and yogurt stock by 20% for next week. Expected sales boost due to seasonal demand patterns and promotional activities. Estimated additional revenue: <span class="currency">8,450.00</span>.</p>
                         <span class="confidence high">85% confidence</span>
                     </div>
                     <div class="recommendation-item">
-                        <h4>Fresh Produce</h4>
-                        <p>Maintain current levels</p>
+                        <h4>Fresh Produce Strategy</h4>
+                        <p>Maintain current inventory levels with slight adjustments for weekend demand. Focus on reducing leafy greens stock by 15% to minimize spoilage. Potential waste reduction: <span class="currency">1,250.00</span> weekly.</p>
                         <span class="confidence medium">70% confidence</span>
                     </div>
                     <div class="recommendation-item">
-                        <h4>Bakery Items</h4>
-                        <p>Reduce stock by 10% for weekend</p>
+                        <h4>Bakery Items Adjustment</h4>
+                        <p>Reduce bread and pastry stock by 10% for weekend periods. Analysis shows decreased weekend bakery sales trend. Expected cost savings: <span class="currency">3,200.00</span> monthly.</p>
                         <span class="confidence low">60% confidence</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Financial Impact -->
+            <div class="financial-impact">
+                <h3>Forecasted Financial Impact</h3>
+                <div class="impact-grid">
+                    <div class="impact-item">
+                        <div class="impact-value"><span class="currency">12,580.00</span></div>
+                        <div class="impact-label">Projected Additional Revenue</div>
+                    </div>
+                    <div class="impact-item">
+                        <div class="impact-value"><span class="currency">2,340.00</span></div>
+                        <div class="impact-label">Estimated Waste Reduction Savings</div>
+                    </div>
+                    <div class="impact-item">
+                        <div class="impact-value">18.5%</div>
+                        <div class="impact-label">Inventory Turnover Improvement</div>
+                    </div>
+                    <div class="impact-item">
+                        <div class="impact-value">94%</div>
+                        <div class="impact-label">Forecast Accuracy Rate</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="js/forecasting.js"></script>
+    <script>
+        function generateForecast() {
+            // Simulate forecast generation
+            const category = document.getElementById('categorySelect').value;
+            const period = document.getElementById('periodSelect').value;
+            const store = document.getElementById('storeSelect').value;
+            
+            // Show loading state
+            const btn = document.querySelector('.btn-primary');
+            const originalText = btn.textContent;
+            btn.textContent = 'Generating Forecast...';
+            btn.disabled = true;
+            
+            // Simulate API call delay
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.disabled = false;
+                
+                // Show success message (in a real app, this would update the actual data)
+                alert(`Forecast generated successfully for ${category} category, ${period} days, ${store} location!`);
+            }, 2000);
+        }
+        
+        // Initialize with some default values
+        document.addEventListener('DOMContentLoaded', function() {
+            generateForecast();
+        });
+    </script>
 </body>
 </html>
