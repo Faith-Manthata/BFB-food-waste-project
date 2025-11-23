@@ -3,104 +3,391 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BFB Food Waste Project - About</title>
-    <link rel="stylesheet" href="style/main.css">
+    <title>About - FoodSave Pro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-brand h2 {
+            color: #2e7d32;
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .nav-links a.active {
+            background: #2e7d32;
+            color: white;
+        }
+
+        .login-btn {
+            background: #2e7d32;
+            color: white !important;
+        }
+
+        .login-btn:hover {
+            background: #1b5e20 !important;
+        }
+
+        .about-content {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .about-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .about-header h1 {
+            color: #2e7d32;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-header p {
+            color: #666;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: justify;
+        }
+
+        .mission-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            align-items: center;
+        }
+
+        .mission-text h2 {
+            color: #2e7d32;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .mission-text p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .mission-image {
+            text-align: center;
+        }
+
+        .mission-image img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border-top: 5px solid #2e7d32;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #2e7d32;
+        }
+
+        .feature-card h3 {
+            color: #2e7d32;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: #666;
+            text-align: justify;
+        }
+
+        .team-section {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .team-section h2 {
+            color: #2e7d32;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+
+        .team-member h4 {
+            color: #2e7d32;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .team-member p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .member-role {
+            font-weight: 600;
+            color: #2e7d32 !important;
+        }
+
+        .contact-section {
+            background: #2e7d32;
+            color: white;
+            padding: 3rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .contact-section p {
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #2e7d32;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: #e8f5e9;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .mission-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-content {
+                padding: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container header-container">
-            <div class="logo">
-                <span class="logo-icon">🌱</span>
-                BFB Food Waste Project
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html" class="active">About</a></li>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="dashboard-manager.html">Dashboard</a></li>
-                </ul>
-            </nav>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <h2>FoodSave Pro</h2>
         </div>
-    </header>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html" class="active">About</a>
+            <a href="login.html" class="login-btn">Login</a>
+        </div>
+    </nav>
 
-    <!-- About Main Content -->
-    <section class="page-content">
-        <div class="container">
-            <h1 class="section-title">About BFB Food Waste Project</h1>
-            
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>Our Vision</h2>
-                    <p>We envision a world where food waste is minimized throughout the supply chain, from farm to fork. Our platform empowers businesses with the data and tools needed to make informed decisions that reduce waste and improve sustainability.</p>
-                    
-                    <h2>How We Address Food Waste</h2>
-                    <p>Food waste occurs at multiple points in the supply chain:</p>
-                    <ul>
-                        <li><strong>Production:</strong> Crops not meeting aesthetic standards</li>
-                        <li><strong>Processing:</strong> Inefficient processing methods</li>
-                        <li><strong>Distribution:</strong> Spoilage during transport and storage</li>
-                        <li><strong>Retail:</strong> Overstocking and expiration</li>
-                        <li><strong>Consumption:</strong> Household and restaurant waste</li>
-                    </ul>
-                    
-                    <h2>Our Technology</h2>
-                    <p>Using SQLite database technology, we've created a robust system that:</p>
-                    <ul>
-                        <li>Tracks inventory in real-time</li>
-                        <li>Monitors expiration dates</li>
-                        <li>Predicts waste patterns using historical data</li>
-                        <li>Generates actionable insights for waste reduction</li>
-                    </ul>
-                    
-                    <h2>Database Architecture</h2>
-                    <p>Our SQLite database follows proper normalization principles with:</p>
-                    <ul>
-                        <li><strong>3+ Normal Form:</strong> Eliminates data redundancy</li>
-                        <li><strong>Primary Keys:</strong> Unique identifiers for each record</li>
-                        <li><strong>Foreign Keys:</strong> Maintains referential integrity</li>
-                        <li><strong>Relationships:</strong> Clear 1-to-many relationships between entities</li>
-                    </ul>
-                </div>
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Food supply chain management">
-                </div>
+    <div class="container">
+        <div class="about-content">
+            <!-- Header Section -->
+            <div class="about-header">
+                <h1>About FoodSave Pro</h1>
+                <p>FoodSave Pro is an innovative inventory management system designed specifically for the food industry to combat food waste through intelligent tracking, predictive analytics, and proactive alert systems. Our mission is to help businesses reduce waste, save money, and contribute to a more sustainable future.</p>
             </div>
-            
-            <!-- Team Section -->
-            <div style="margin-top: 3rem;">
-                <h2 class="section-title">Our Approach</h2>
+
+            <!-- Mission Section -->
+            <div class="mission-section">
+                <div class="mission-text">
+                    <h2>Our Mission</h2>
+                    <p>Every year, millions of tons of food are wasted while millions of people go hungry. FoodSave Pro was born from the urgent need to address this global challenge. We believe that technology can be a powerful tool in creating a more efficient and sustainable food supply chain.</p>
+                    <p>Our platform leverages advanced algorithms and real-time data to help businesses optimize their inventory management, predict demand accurately, and take proactive measures to prevent food waste before it happens.</p>
+                </div>
+                
+            </div>
+
+            <!-- Features Section -->
+            <div class="features-section">
+                <h2 style="text-align: center; color: #2e7d32; margin-bottom: 2rem; font-size: 2rem;">Why Choose FoodSave Pro?</h2>
                 <div class="features-grid">
                     <div class="feature-card">
-                        <h3>Data-Driven</h3>
-                        <p>Using analytics and machine learning to identify waste patterns and predict future waste.</p>
+                        <div class="feature-icon">📊</div>
+                        <h3>Smart Inventory Tracking</h3>
+                        <p>Real-time monitoring of stock levels, expiry dates, and product movement across all your locations with automated alerts for items approaching expiration.</p>
                     </div>
                     <div class="feature-card">
-                        <h3>User-Centric</h3>
-                        <p>Intuitive interfaces designed for both managers and employees in the food supply chain.</p>
+                        <div class="feature-icon"></div>
+                        <h3>Predictive Analytics</h3>
+                        <p>Advanced machine learning algorithms that forecast demand patterns, helping you order the right quantities and reduce overstocking or stockouts.</p>
                     </div>
                     <div class="feature-card">
-                        <h3>Sustainable</h3>
-                        <p>Focused on creating long-term solutions that benefit both businesses and the environment.</p>
+                        <div class="feature-icon">💰</div>
+                        <h3>Cost Savings</h3>
+                        <p>Significantly reduce food waste and associated costs while maximizing profitability through optimized inventory management and strategic discounting.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌱</div>
+                        <h3>Sustainability Focus</h3>
+                        <p>Contribute to environmental sustainability by minimizing food waste and reducing your carbon footprint through efficient supply chain management.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container footer-content">
-            <p>&copy; 2024 BFB Food Waste Project. All rights reserved.</p>
-            <div class="footer-links">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="login.html">Login</a>
+            <!-- Team Section -->
+            <div class="team-section">
+                <h2>Meet Our Team</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <h4>Faith Manthata</h4>
+                        <p class="member-role">Project Manager & Lead Developer</p>
+                        <p>Oversees project development and ensures seamless integration of all system components</p>
+                    </div>
+                    <div class="team-member">
+                        <h4>Tintswalo Masinge & Mbuso Cele</h4>
+                        <p class="member-role">Database Architect & Backend Developer</p>
+                        <p>Designs and maintains the robust SQLite database system and server infrastructure</p>
+                    </div>
+                    <div class="team-member">
+                        <h4>Letlotlo Maubane</h4>
+                        <p class="member-role">Frontend Developer & UI/UX Designer</p>
+                        <p>Creates intuitive user interfaces and ensures optimal user experience across all platforms</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="contact-section">
+                <h2>Ready to Reduce Food Waste?</h2>
+                <p>Join hundreds of businesses already using FoodSave Pro to transform their inventory management and make a positive impact.</p>
+                <a href="login.html" class="btn-primary">Get Started Today</a>
             </div>
         </div>
-    </footer>
+    </div>
 
-    <script src="js/main.js"></script>
+    <script>
+        // Simple animation for feature cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const featureCards = document.querySelectorAll('.feature-card');
+            const teamMembers = document.querySelectorAll('.team-member');
+            
+            featureCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+
+            teamMembers.forEach((member, index) => {
+                member.style.opacity = '0';
+                member.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    member.style.transition = 'all 0.6s ease';
+                    member.style.opacity = '1';
+                    member.style.transform = 'translateY(0)';
+                }, (index * 200) + 600);
+            });
+        });
+    </script>
 </body>
 </html>

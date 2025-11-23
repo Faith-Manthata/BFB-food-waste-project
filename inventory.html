@@ -4,7 +4,240 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventory Management - FoodSave Pro</title>
-    <link rel="stylesheet" href="style/main.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-brand h2 {
+            color: #2e7d32;
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .nav-links a.active {
+            background: #2e7d32;
+            color: white;
+        }
+
+        .logout {
+            background: #ff6b6b;
+            color: white !important;
+        }
+
+        .user-info {
+            background: #2e7d32;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+        }
+
+        .dashboard-header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dashboard-header h1 {
+            color: #2e7d32;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #2e7d32;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1b5e20;
+        }
+
+        .btn-secondary {
+            background: #757575;
+            color: white;
+        }
+
+        .inventory-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .search-filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .search-bar {
+            padding: 0.8rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-select {
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            min-width: 150px;
+        }
+
+        .inventory-table {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            background: #2e7d32;
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .expiry-urgent { color: #f44336; font-weight: 600; }
+        .expiry-warning { color: #ff9800; font-weight: 600; }
+        .expiry-safe { color: #4caf50; }
+
+        .status {
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status.urgent { background: #ffebee; color: #c62828; }
+        .status.warning { background: #fff3e0; color: #ef6c00; }
+        .status.safe { background: #e8f5e9; color: #2e7d32; }
+
+        .btn-small {
+            padding: 0.4rem 0.8rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-small.danger { background: #f44336; color: white; }
+        .btn-small.warning { background: #ff9800; color: white; }
+        .btn-small:hover { transform: translateY(-1px); }
+
+        .currency::before {
+            content: "R ";
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .dashboard-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .search-filters {
+                flex-direction: column;
+            }
+            
+            th, td {
+                padding: 0.5rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -42,7 +275,6 @@
                     <option>Produce</option>
                     <option>Meat</option>
                     <option>Bakery</option>
-                    <option>Deli</option>
                 </select>
                 <select class="filter-select">
                     <option>All Status</option>
@@ -59,6 +291,7 @@
                             <th>Product Name</th>
                             <th>Category</th>
                             <th>Current Stock</th>
+                            <th>Value</th>
                             <th>Expiry Date</th>
                             <th>Status</th>
                             <th>Actions</th>
@@ -69,6 +302,7 @@
                             <td>Milk - 2%</td>
                             <td>Dairy</td>
                             <td>45 units</td>
+                            <td><span class="currency">2,069.55</span></td>
                             <td class="expiry-urgent">2024-01-15</td>
                             <td><span class="status urgent">Urgent</span></td>
                             <td>
@@ -80,6 +314,7 @@
                             <td>Chicken Breast</td>
                             <td>Meat</td>
                             <td>23 units</td>
+                            <td><span class="currency">832.25</span></td>
                             <td class="expiry-warning">2024-01-18</td>
                             <td><span class="status warning">Warning</span></td>
                             <td>
@@ -91,6 +326,7 @@
                             <td>Whole Wheat Bread</td>
                             <td>Bakery</td>
                             <td>15 units</td>
+                            <td><span class="currency">449.85</span></td>
                             <td class="expiry-warning">2024-01-17</td>
                             <td><span class="status warning">Warning</span></td>
                             <td>
@@ -102,6 +338,7 @@
                             <td>Apples</td>
                             <td>Produce</td>
                             <td>78 units</td>
+                            <td><span class="currency">2,730.00</span></td>
                             <td class="expiry-safe">2024-01-25</td>
                             <td><span class="status safe">Safe</span></td>
                             <td>
@@ -113,6 +350,7 @@
                             <td>Yogurt</td>
                             <td>Dairy</td>
                             <td>32 units</td>
+                            <td><span class="currency">1,439.68</span></td>
                             <td class="expiry-safe">2024-01-22</td>
                             <td><span class="status safe">Safe</span></td>
                             <td>
@@ -126,6 +364,46 @@
         </section>
     </div>
 
-    <script src="js/inventory.js"></script>
+    <script>
+        // Simple search functionality
+        document.querySelector('.search-bar').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('tbody tr');
+            
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(searchTerm) ? '' : 'none';
+            });
+        });
+
+        // Filter functionality
+        document.querySelectorAll('.filter-select').forEach(select => {
+            select.addEventListener('change', function() {
+                // In a real app, this would filter the table data
+                console.log('Filter applied:', this.value);
+            });
+        });
+
+        // Add product button
+        document.querySelector('.btn-primary').addEventListener('click', function() {
+            alert('Add New Product feature would open a form here');
+        });
+    </script>
 </body>
+<nav class="navbar">
+    <div class="nav-brand">
+        <h2>FoodSave Pro</h2>
+    </div>
+    <div class="nav-links">
+        <a href="index.html">Dashboard</a>
+        <a href="about.html">About</a>
+        <a href="inventory.html" class="active">Inventory</a>
+        <a href="forecasting.html">Forecasting</a>
+        <a href="alerts.html">Alerts</a>
+        <a href="login.html" class="logout">Logout</a>
+    </div>
+    <div class="user-info">
+        <span>Inventory Management</span>
+    </div>
+</nav>
 </html>
