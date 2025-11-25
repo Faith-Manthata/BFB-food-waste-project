@@ -1,4 +1,3 @@
-<script src="js/api.js"></script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -95,7 +94,6 @@
 
         .dashboard-header p {
             color: #666;
-            text-align: center;
             max-width: 600px;
             margin: 0 auto;
             text-align: justify;
@@ -310,23 +308,19 @@
                 flex-direction: column;
                 gap: 1rem;
             }
-            
             .nav-links {
                 flex-wrap: wrap;
                 justify-content: center;
             }
-            
             .alert-filters {
                 flex-direction: column;
                 align-items: stretch;
             }
-            
             .alert-item {
                 flex-direction: column;
                 gap: 1rem;
                 text-align: center;
             }
-            
             .alert-actions {
                 justify-content: center;
             }
@@ -353,10 +347,9 @@
     <div class="container">
         <header class="dashboard-header">
             <h1>Expiry Alerts & Notifications</h1>
-            <p>Monitor and manage products approaching expiration dates. Take proactive measures to reduce waste and maximize inventory value through strategic discounting and promotions.</p>
+            <p>Monitor and manage products approaching expiration dates. Take proactive measures to reduce waste and maximize inventory value.</p>
         </header>
 
-        <!-- Alert Filters -->
         <div class="alert-filters">
             <div class="filter-group">
                 <label>Alert Type:</label>
@@ -377,136 +370,154 @@
                     <option value="bakery">Bakery</option>
                 </select>
             </div>
-            <button class="btn-primary" onclick="applyFilters()">Apply Filters</button>
+            <button class="btn-primary" onclick="loadAlerts()">Apply Filters</button>
             <button class="btn-secondary" onclick="markAllRead()">Mark All Read</button>
         </div>
 
-        <!-- Alerts Summary -->
-        <div class="alerts-summary">
-            <div class="summary-card urgent">
-                <h3>Urgent Alerts</h3>
-                <div class="count">8</div>
-                <p>Expire today</p>
-            </div>
-            <div class="summary-card warning">
-                <h3>Warning Alerts</h3>
-                <div class="count">23</div>
-                <p>Expire in 1-3 days</p>
-            </div>
-            <div class="summary-card upcoming">
-                <h3>Upcoming Alerts</h3>
-                <div class="count">45</div>
-                <p>Expire in 4-7 days</p>
-            </div>
-            <div class="summary-card total">
-                <h3>Total Alerts</h3>
-                <div class="count">76</div>
-                <p>Requiring attention</p>
-            </div>
+        <div class="alerts-summary" id="alertsSummary">
+            <!-- Summary will be loaded dynamically -->
         </div>
 
-        <!-- Alerts List -->
         <div class="alerts-container">
             <h2>Active Alerts</h2>
-            
-            <!-- Urgent Alerts Section -->
-            <div class="alert-section">
-                <h3 class="section-title urgent">🟠 Urgent - Expire Today</h3>
-                <div class="alert-list">
-                    <div class="alert-item urgent">
-                        <div class="alert-content">
-                            <h4>Milk - 2%</h4>
-                            <p><strong>Expires:</strong> Today</p>
-                            <p><strong>Category:</strong> Dairy</p>
-                            <p><strong>Stock:</strong> 15 units | <strong>Value:</strong> <span class="currency">689.85</span></p>
-                            <span class="alert-id">#ALT-001</span>
-                        </div>
-                        <div class="alert-actions">
-                            <button class="btn-small danger">Apply Discount</button>
-                            <button class="btn-small warning">Move to Front</button>
-                            <button class="btn-small">Details</button>
-                        </div>
-                    </div>
-                    
-                    <div class="alert-item urgent">
-                        <div class="alert-content">
-                            <h4>Chicken Breast</h4>
-                            <p><strong>Expires:</strong> Today</p>
-                            <p><strong>Category:</strong> Meat</p>
-                            <p><strong>Stock:</strong> 8 units | <strong>Value:</strong> <span class="currency">289.50</span></p>
-                            <span class="alert-id">#ALT-002</span>
-                        </div>
-                        <div class="alert-actions">
-                            <button class="btn-small danger">Apply Discount</button>
-                            <button class="btn-small warning">Move to Front</button>
-                            <button class="btn-small">Details</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Warning Alerts Section -->
-            <div class="alert-section">
-                <h3 class="section-title warning">🟡 Warning - Expire in 1-3 Days</h3>
-                <div class="alert-list">
-                    <div class="alert-item warning">
-                        <div class="alert-content">
-                            <h4>Whole Wheat Bread</h4>
-                            <p><strong>Expires:</strong> Tomorrow</p>
-                            <p><strong>Category:</strong> Bakery</p>
-                            <p><strong>Stock:</strong> 12 units | <strong>Value:</strong> <span class="currency">359.88</span></p>
-                            <span class="alert-id">#ALT-003</span>
-                        </div>
-                        <div class="alert-actions">
-                            <button class="btn-small warning">Promote Item</button>
-                            <button class="btn-small">Create Promotion</button>
-                            <button class="btn-small">Details</button>
-                        </div>
-                    </div>
-                    
-                    <div class="alert-item warning">
-                        <div class="alert-content">
-                            <h4>Yogurt - Strawberry</h4>
-                            <p><strong>Expires:</strong> 2 days</p>
-                            <p><strong>Category:</strong> Dairy</p>
-                            <p><strong>Stock:</strong> 20 units | <strong>Value:</strong> <span class="currency">899.80</span></p>
-                            <span class="alert-id">#ALT-004</span>
-                        </div>
-                        <div class="alert-actions">
-                            <button class="btn-small warning">Promote Item</button>
-                            <button class="btn-small">Create Promotion</button>
-                            <button class="btn-small">Details</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Upcoming Alerts Section -->
-            <div class="alert-section">
-                <h3 class="section-title upcoming">🔵 Upcoming - Expire in 4-7 Days</h3>
-                <div class="alert-list">
-                    <div class="alert-item upcoming">
-                        <div class="alert-content">
-                            <h4>Apples - Red Delicious</h4>
-                            <p><strong>Expires:</strong> 5 days</p>
-                            <p><strong>Category:</strong> Produce</p>
-                            <p><strong>Stock:</strong> 35 units | <strong>Value:</strong> <span class="currency">1,225.00</span></p>
-                            <span class="alert-id">#ALT-005</span>
-                        </div>
-                        <div class="alert-actions">
-                            <button class="btn-small">Monitor</button>
-                            <button class="btn-small">Set Reminder</button>
-                            <button class="btn-small">Details</button>
-                        </div>
-                    </div>
-                </div>
+            <div id="alertsContainer">
+                <!-- Alerts will be loaded dynamically -->
             </div>
         </div>
 
-        <!-- Alert Statistics -->
         <div class="alert-stats">
             <h2>Alert Performance Metrics</h2>
-            <div class="stats-grid">
+            <div class="stats-grid" id="statsGrid">
+                <!-- Stats will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script>
+        // Alert data structure
+        const alertData = {
+            urgent: [
+                { id: 'ALT-001', name: 'Milk - 2%', category: 'Dairy', expiry: 'Today', stock: 15, value: 689.85 },
+                { id: 'ALT-002', name: 'Chicken Breast', category: 'Meat', expiry: 'Today', stock: 8, value: 289.50 }
+            ],
+            warning: [
+                { id: 'ALT-003', name: 'Whole Wheat Bread', category: 'Bakery', expiry: 'Tomorrow', stock: 12, value: 359.88 },
+                { id: 'ALT-004', name: 'Yogurt - Strawberry', category: 'Dairy', expiry: '2 days', stock: 20, value: 899.80 }
+            ],
+            upcoming: [
+                { id: 'ALT-005', name: 'Apples - Red Delicious', category: 'Produce', expiry: '5 days', stock: 35, value: 1225.00 }
+            ]
+        };
+
+        function loadAlerts() {
+            const type = document.getElementById('alertType').value;
+            const category = document.getElementById('alertCategory').value;
+            
+            updateAlertsSummary();
+            displayAlerts(type, category);
+            updateStats();
+        }
+
+        function updateAlertsSummary() {
+            const summary = document.getElementById('alertsSummary');
+            summary.innerHTML = `
+                <div class="summary-card urgent">
+                    <h3>Urgent Alerts</h3>
+                    <div class="count">${alertData.urgent.length}</div>
+                    <p>Expire today</p>
+                </div>
+                <div class="summary-card warning">
+                    <h3>Warning Alerts</h3>
+                    <div class="count">${alertData.warning.length}</div>
+                    <p>Expire in 1-3 days</p>
+                </div>
+                <div class="summary-card upcoming">
+                    <h3>Upcoming Alerts</h3>
+                    <div class="count">${alertData.upcoming.length}</div>
+                    <p>Expire in 4-7 days</p>
+                </div>
+                <div class="summary-card total">
+                    <h3>Total Alerts</h3>
+                    <div class="count">${alertData.urgent.length + alertData.warning.length + alertData.upcoming.length}</div>
+                    <p>Requiring attention</p>
+                </div>
+            `;
+        }
+
+        function displayAlerts(type, category) {
+            const container = document.getElementById('alertsContainer');
+            container.innerHTML = '';
+
+            const alertTypes = type === 'all' ? ['urgent', 'warning', 'upcoming'] : [type];
+            
+            alertTypes.forEach(alertType => {
+                const alerts = alertData[alertType].filter(alert => 
+                    category === 'all' || alert.category.toLowerCase() === category
+                );
+
+                if (alerts.length > 0) {
+                    const section = document.createElement('div');
+                    section.className = 'alert-section';
+                    
+                    const title = getAlertTitle(alertType);
+                    section.innerHTML = `<h3 class="section-title ${alertType}">${title}</h3>`;
+                    
+                    const alertList = document.createElement('div');
+                    alertList.className = 'alert-list';
+                    
+                    alerts.forEach(alert => {
+                        alertList.appendChild(createAlertItem(alert, alertType));
+                    });
+                    
+                    section.appendChild(alertList);
+                    container.appendChild(section);
+                }
+            });
+        }
+
+        function getAlertTitle(type) {
+            const titles = {
+                urgent: '🟠 Urgent - Expire Today',
+                warning: '🟡 Warning - Expire in 1-3 Days',
+                upcoming: '🔵 Upcoming - Expire in 4-7 Days'
+            };
+            return titles[type];
+        }
+
+        function createAlertItem(alert, type) {
+            const item = document.createElement('div');
+            item.className = `alert-item ${type}`;
+            
+            const actions = type === 'urgent' 
+                ? `<button class="btn-small danger" onclick="applyDiscount('${alert.id}')">Apply Discount</button>
+                   <button class="btn-small warning" onclick="moveToFront('${alert.id}')">Move to Front</button>`
+                : type === 'warning'
+                ? `<button class="btn-small warning" onclick="promoteItem('${alert.id}')">Promote Item</button>
+                   <button class="btn-small" onclick="createPromotion('${alert.id}')">Create Promotion</button>`
+                : `<button class="btn-small" onclick="monitorItem('${alert.id}')">Monitor</button>
+                   <button class="btn-small" onclick="setReminder('${alert.id}')">Set Reminder</button>`;
+
+            item.innerHTML = `
+                <div class="alert-content">
+                    <h4>${alert.name}</h4>
+                    <p><strong>Expires:</strong> ${alert.expiry}</p>
+                    <p><strong>Category:</strong> ${alert.category}</p>
+                    <p><strong>Stock:</strong> ${alert.stock} units | <strong>Value:</strong> <span class="currency">${alert.value}</span></p>
+                    <span class="alert-id">${alert.id}</span>
+                </div>
+                <div class="alert-actions">
+                    ${actions}
+                    <button class="btn-small" onclick="showDetails('${alert.id}')">Details</button>
+                </div>
+            `;
+            
+            return item;
+        }
+
+        function updateStats() {
+            const stats = document.getElementById('statsGrid');
+            stats.innerHTML = `
                 <div class="stat-item">
                     <h4>Avg Response Time</h4>
                     <div class="stat-value">2.3 hours</div>
@@ -523,22 +534,49 @@
                     <h4>Top Category</h4>
                     <div class="stat-value">Dairy</div>
                 </div>
-            </div>
-        </div>
-    </div>
+            `;
+        }
 
-    <script>
-        function applyFilters() {
-            const type = document.getElementById('alertType').value;
-            const category = document.getElementById('alertCategory').value;
-            alert(Filters applied: ${type} alerts, ${category} category);
+        // Alert action functions
+        function applyDiscount(alertId) {
+            alert(`Applying 50% discount to ${alertId}`);
+        }
+
+        function moveToFront(alertId) {
+            alert(`Moving ${alertId} to front display`);
+        }
+
+        function promoteItem(alertId) {
+            alert(`Creating promotion for ${alertId}`);
+        }
+
+        function createPromotion(alertId) {
+            alert(`Setting up promotion campaign for ${alertId}`);
+        }
+
+        function monitorItem(alertId) {
+            alert(`Monitoring ${alertId} closely`);
+        }
+
+        function setReminder(alertId) {
+            alert(`Setting reminder for ${alertId}`);
+        }
+
+        function showDetails(alertId) {
+            alert(`Showing details for ${alertId}`);
         }
 
         function markAllRead() {
-            if(confirm('Mark all alerts as read?')) {
+            if (confirm('Mark all alerts as read?')) {
                 alert('All alerts marked as read!');
+                // In a real app, this would update the backend
             }
         }
+
+        // Load alerts on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAlerts();
+        });
     </script>
 </body>
 </html>

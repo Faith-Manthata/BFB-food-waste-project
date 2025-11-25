@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<script src="js/api.js"></script>    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -261,23 +260,22 @@
         <header class="dashboard-header">
             <h1>Inventory Management</h1>
             <div class="header-actions">
-                <button class="btn-primary">Add New Product</button>
-                <button class="btn-secondary">Export Report</button>
+                <button class="btn-primary" id="addProductBtn">Add New Product</button>
+                <button class="btn-secondary" id="exportBtn">Export Report</button>
             </div>
         </header>
 
-        <!-- Inventory Table -->
         <section class="inventory-section">
             <div class="search-filters">
-                <input type="text" placeholder="Search products..." class="search-bar">
-                <select class="filter-select">
+                <input type="text" placeholder="Search products..." class="search-bar" id="searchBar">
+                <select class="filter-select" id="categoryFilter">
                     <option>All Categories</option>
                     <option>Dairy</option>
                     <option>Produce</option>
                     <option>Meat</option>
                     <option>Bakery</option>
                 </select>
-                <select class="filter-select">
+                <select class="filter-select" id="statusFilter">
                     <option>All Status</option>
                     <option>In Stock</option>
                     <option>Low Stock</option>
@@ -298,78 +296,95 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Milk - 2%</td>
-                            <td>Dairy</td>
-                            <td>45 units</td>
-                            <td><span class="currency">2,069.55</span></td>
-                            <td class="expiry-urgent">2024-01-15</td>
-                            <td><span class="status urgent">Urgent</span></td>
-                            <td>
-                                <button class="btn-small">Edit</button>
-                                <button class="btn-small danger">Discount</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Chicken Breast</td>
-                            <td>Meat</td>
-                            <td>23 units</td>
-                            <td><span class="currency">832.25</span></td>
-                            <td class="expiry-warning">2024-01-18</td>
-                            <td><span class="status warning">Warning</span></td>
-                            <td>
-                                <button class="btn-small">Edit</button>
-                                <button class="btn-small warning">Promote</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Whole Wheat Bread</td>
-                            <td>Bakery</td>
-                            <td>15 units</td>
-                            <td><span class="currency">449.85</span></td>
-                            <td class="expiry-warning">2024-01-17</td>
-                            <td><span class="status warning">Warning</span></td>
-                            <td>
-                                <button class="btn-small">Edit</button>
-                                <button class="btn-small warning">Promote</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Apples</td>
-                            <td>Produce</td>
-                            <td>78 units</td>
-                            <td><span class="currency">2,730.00</span></td>
-                            <td class="expiry-safe">2024-01-25</td>
-                            <td><span class="status safe">Safe</span></td>
-                            <td>
-                                <button class="btn-small">Edit</button>
-                                <button class="btn-small">View</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Yogurt</td>
-                            <td>Dairy</td>
-                            <td>32 units</td>
-                            <td><span class="currency">1,439.68</span></td>
-                            <td class="expiry-safe">2024-01-22</td>
-                            <td><span class="status safe">Safe</span></td>
-                            <td>
-                                <button class="btn-small">Edit</button>
-                                <button class="btn-small">View</button>
-                            </td>
-                        </tr>
+                    <tbody id="inventoryTableBody">
+                        <!-- Data will be loaded from backend -->
                     </tbody>
                 </table>
             </div>
         </section>
     </div>
 
+    <script src="js/api.js"></script>
     <script>
-        // Simple search functionality
-        document.querySelector('.search-bar').addEventListener('input', function(e) {
+        // Load inventory when page opens
+        document.addEventListener('DOMContentLoaded', loadInventory);
+
+        async function loadInventory() {
+            try {
+                const data = await FoodSaveAPI.getInventory();
+                const tableBody = document.getElementById('inventoryTableBody');
+                tableBody.innerHTML = '';
+
+                data.forEach(item => {
+                    const value = item.stock * 45.99;
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${item.name}</td>
+                        <td>${item.category}</td>
+                        <td>${item.stock} units</td>
+                        <td><span class="currency">${value.toFixed(2)}</span></td>
+                        <td class="expiry-${item.status}">${item.expiry}</td>
+                        <td><span class="status ${item.status}">${item.status}</span></td>
+                        <td>
+                            <button class="btn-small" onclick="editProduct(${item.id})">Edit</button>
+                            <button class="btn-small ${item.status === 'urgent' ? 'danger' : item.status === 'warning' ? 'warning' : ''}" 
+                                    onclick="applyAction(${item.id}, '${item.status}')">
+                                ${item.status === 'urgent' ? 'Discount' : item.status === 'warning' ? 'Promote' : 'View'}
+                            </button>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Error loading inventory:', error);
+                document.getElementById('inventoryTableBody').innerHTML = 
+                    '<tr><td colspan="7" style="text-align: center; padding: 2rem;">Error loading inventory</td></tr>';
+            }
+        }
+
+        // Add product functionality
+        document.getElementById('addProductBtn').addEventListener('click', async function() {
+            const name = prompt('Enter product name:');
+            if (!name) return;
+
+            const category = prompt('Enter category:');
+            if (!category) return;
+
+            const stock = prompt('Enter stock quantity:');
+            if (!stock) return;
+
+            const expiry = prompt('Enter expiry date (YYYY-MM-DD):');
+            if (!expiry) return;
+
+            try {
+                const result = await FoodSaveAPI.addItem({
+                    name: name,
+                    category: category,
+                    stock: parseInt(stock),
+                    expiry: expiry
+                });
+
+                if (result.success) {
+                    alert('Product added successfully!');
+                    loadInventory(); // Refresh table
+                } else {
+                    alert('Failed to add product');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error adding product');
+            }
+        });
+
+        // Export functionality
+        document.getElementById('exportBtn').addEventListener('click', function() {
+            alert('Exporting inventory report...');
+        });
+
+        // Search functionality
+        document.getElementById('searchBar').addEventListener('input', function(e) {
             const searchTerm = e.target.value.toLowerCase();
-            const rows = document.querySelectorAll('tbody tr');
+            const rows = document.querySelectorAll('#inventoryTableBody tr');
             
             rows.forEach(row => {
                 const text = row.textContent.toLowerCase();
@@ -377,34 +392,16 @@
             });
         });
 
-        // Filter functionality
-        document.querySelectorAll('.filter-select').forEach(select => {
-            select.addEventListener('change', function() {
-                // In a real app, this would filter the table data
-                console.log('Filter applied:', this.value);
-            });
-        });
+        // Edit product
+        function editProduct(itemId) {
+            alert(`Edit product ID: ${itemId}`);
+        }
 
-        // Add product button
-        document.querySelector('.btn-primary').addEventListener('click', function() {
-            alert('Add New Product feature would open a form here');
-        });
+        // Apply action
+        function applyAction(itemId, status) {
+            const action = status === 'urgent' ? 'Discount' : status === 'warning' ? 'Promote' : 'View';
+            alert(`${action} product ID: ${itemId}`);
+        }
     </script>
 </body>
-<nav class="navbar">
-    <div class="nav-brand">
-        <h2>FoodSave Pro</h2>
-    </div>
-    <div class="nav-links">
-        <a href="index.html">Dashboard</a>
-        <a href="about.html">About</a>
-        <a href="inventory.html" class="active">Inventory</a>
-        <a href="forecasting.html">Forecasting</a>
-        <a href="alerts.html">Alerts</a>
-        <a href="login.html" class="logout">Logout</a>
-    </div>
-    <div class="user-info">
-        <span>Inventory Management</span>
-    </div>
-</nav>
 </html>
