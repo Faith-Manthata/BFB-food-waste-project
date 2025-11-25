@@ -3,13 +3,13 @@
 ## Project BFB321 - Group 15
 *University of Pretoria - Faculty of Engineering, Built Environment and Information Technology*
 
-## 👥 Team Members
+## Team Members
 - **MASINGE T.E** - u22592220 (Database Architect & Backend Developer)
 - **MANTHATA F** - u21574830 (Project Manager & Lead Developer)  
 - **MAUBANE L.S** - u22629689 (Frontend Developer & UI/UX Designer)
 - **CELE M.K** - u23749556 (Backend Developer & System Integration)
 
-## 🚀 How to Run Our Application
+## How to Run Our Application
 
 ### Quick Setup (4 Steps):
 1. **Install Dependencies**: `pip install flask flask-cors`
@@ -22,7 +22,7 @@
 - **Employee**: `emp@foodsave.com` / `pass123`
 - **Admin**: `admin` / `admin`
 
-## 🎯 About Our Project
+##  About Our Project
 FoodSave Pro is a full-stack web application that helps retailers reduce food waste through intelligent inventory management. The system provides real-time tracking of food products, predicts demand using AI algorithms, and sends automated alerts for expiring items. Managers get comprehensive analytics across multiple stores while employees can efficiently manage daily operations.
 
 ## 🛠 Technology Stack
@@ -31,7 +31,7 @@ FoodSave Pro is a full-stack web application that helps retailers reduce food wa
 - **API**: RESTful architecture with JWT authentication
 - **Design**: Responsive web design with modern UI/UX
 
-## 📋 Key Features
+##  Key Features
 - **Role-based Dashboards**: Separate interfaces for managers and employees
 - **Real-time Inventory Management**: Track stock levels and expiry dates
 - **Demand Forecasting**: AI-powered predictions for better ordering
@@ -39,21 +39,21 @@ FoodSave Pro is a full-stack web application that helps retailers reduce food wa
 - **Live Analytics**: Real-time metrics and performance tracking
 - **Multi-store Support**: Manage multiple retail locations
 
-## 🗄 Database Schema
+## Database Schema
 Our SQLite database includes four main tables:
 - **users**: User accounts and authentication
 - **inventory**: Product information and stock levels
 - **waste_records**: Track wasted items and reasons
 - **suppliers**: Supplier information and contacts
 
-## 🔧 API Endpoints
+##  API Endpoints
 - `POST /api/login` - User authentication
 - `GET /api/inventory` - Get all inventory items
 - `POST /api/inventory` - Add new product
 - `PUT /api/inventory/<id>` - Update product
 - `GET /api/stats` - Get dashboard statistics
 
-## 🐛 Troubleshooting Common Issues
+##  Troubleshooting Common Issues
 
 **Port 5000 Already in Use:**
 ```bash
