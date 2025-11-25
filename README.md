@@ -15,7 +15,7 @@
 1. **Install Dependencies**: `pip install flask flask-cors`
 2. **Initialize Database**: `python init_db.py`
 3. **Start Server**: `python app.py`
-4. **Open Browser**: Go to `http://localhost:5001/login.html`
+4. **Open Browser**: Go to `http://localhost:5001/index.html`
 
 ### Login Credentials:
 - **Manager**: `manager@foodsave.com` / `pass123`
